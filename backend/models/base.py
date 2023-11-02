@@ -45,16 +45,20 @@ def key_type(name):
 
 def primary_key(name):
     key, kwargs = key_definitions[name]
-    return Column(key, primary_key=True, index=True, unique=True, autoincrement=True, **kwargs)
+    return Column(
+        key, primary_key=True, index=True, unique=True, autoincrement=True, **kwargs
+    )
 
 
 def status_key(name):
     key, kwargs = key_definitions[name]
-    return Column(key, primary_key=True, index=True, unique=True, autoincrement=True, **kwargs)
+    return Column(
+        key, primary_key=True, index=True, unique=True, autoincrement=True, **kwargs
+    )
 
 
 class Version(db.Model):
-    __tablename__ = 'versions'
+    __tablename__ = "versions"
 
     id = db.Column(db.Integer, primary_key=True)
     ver = db.Column(db.Integer)

@@ -1,15 +1,15 @@
 from flask_restful import Api
 from flask import Blueprint
 from flask_wtf.csrf import CSRFProtect
-from backend.apis.login import UserLogin, SendCodeAPI
+from backend.apis.login import UserLoginAPI, SendCodeAPI
 
 csrf = CSRFProtect()
 
-bp = Blueprint('api', __name__, url_prefix='/r/v1')
+bp = Blueprint("api", __name__, url_prefix="/r/v1")
 api = Api(bp)
 
 # login
-api.add_resource(UserLogin, "/login")
+api.add_resource(UserLoginAPI, "/login")
 api.add_resource(SendCodeAPI, "/sms")
 
 
@@ -20,6 +20,3 @@ def api_init_app(app):
 
 def init_app(app):
     api_init_app(app)
-
-
-

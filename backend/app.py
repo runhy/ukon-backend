@@ -1,5 +1,4 @@
-import importlib
-
+from dotenv import load_dotenv
 from flask import Flask
 from werkzeug.middleware.proxy_fix import ProxyFix
 from . import settings
@@ -24,16 +23,14 @@ class Ukon(Flask):
 
 
 def create_app():
-    from . import (
-        migrate,
-        routers
-    )
+    from . import migrate, routers
     from .models import db
     from .settings.dynamic_settings import import_env
 
     app = Ukon()
 
     import_env(app, settings.ENV_FILE)
+    load_dotenv(settings.ENV_FILE)
 
     db.init_app(app)
     migrate.init_app(app, db)
@@ -41,7 +38,7 @@ def create_app():
 
     @app.errorhandler(404)
     def invalid_route(e):
-        app.logger.error(e, {'http_code': 404}, exc_info=True)
+        app.logger.error(e, {"http_code": 404}, exc_info=True)
         return e
 
     return app

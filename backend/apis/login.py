@@ -5,11 +5,10 @@ from backend.apis.exceptions import ApiUserError
 from backend.utils import UkonArgument as Argument
 
 
-class UserLogin(ActionApi):
-
+class UserLoginAPI(ActionApi):
     @parse_arguments(
         Argument("phone", type=str, required=True),
-        Argument("password", type=str, required=True)
+        Argument("password", type=str, required=True),
     )
     def post(self, arguments):
         try:
@@ -24,7 +23,7 @@ class UserLogin(ActionApi):
     @parse_arguments(
         Argument("phone", type=str, required=True),
         Argument("password", type=str, required=True),
-        Argument("sms_code", type=str, required=True)
+        Argument("sms_code", type=str, required=True),
     )
     def patch(self, arguments):
         try:
@@ -48,11 +47,9 @@ class UserLogin(ActionApi):
 
 
 class SendCodeAPI(ActionApi):
-    """ phone massage """
+    """phone massage"""
 
-    @parse_arguments(
-        Argument("phone", type=str)
-    )
+    @parse_arguments(Argument("phone", type=str))
     def post(self, arguments):
         try:
             phone = arguments.get("phone")

@@ -101,15 +101,15 @@ class UserLoginService(object):
 
         # Avoid repeated requests to send codes
         if redis_conn.get('sms_code_flag:%s' % phone):
-            raise ApiUserError(ERROR.SMS_CODE_EXIST)
+            raise ApiUserError(ERROR.SMS_CODE_EXISTS)
         else:
-            # send limit
+            # send request count limit
             UserLoginService().sms_count_check(phone)
 
             # validity period 300s
             redis_conn.set('sms_code:%s' % phone, sms_code, 300)
 
-            # request limit
+            # set request time limit
             redis_conn.set('sms_code_flag:%s' % phone, phone, 60)
 
         # celery send message via side service

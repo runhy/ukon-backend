@@ -8,6 +8,7 @@ manager = AppGroup(help="Initialize data.")
 @manager.command()
 def data():
     """"""
+    print("init data...")
 
 
 def init_common_func(model_name, ver, func):
@@ -16,7 +17,11 @@ def init_common_func(model_name, ver, func):
         func()
         db.session.add(Version(classifies=model_name.__tablename__, ver=ver))
     else:
-        q = db.session.query(Version).filter(Version.classifies == model_name.__tablename__).first()
+        q = (
+            db.session.query(Version)
+            .filter(Version.classifies == model_name.__tablename__)
+            .first()
+        )
         if not q:
             # db.session.query(model_name).delete()
             func()

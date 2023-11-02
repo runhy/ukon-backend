@@ -3,10 +3,10 @@ DEBUG = True
 
 # Sqlalchemy
 SQLALCHEMY_ECHO = False
-SQLALCHEMY_DATABASE_URI = 'postgresql://hyw:CmBvNChK8GuNh@127.0.0.1:5432/ukon'
+SQLALCHEMY_DATABASE_URI = "postgresql://hyw:CmBvNChK8GuNh@127.0.0.1:5432/ukon"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Redis
-REDIS_URL = 'redis://root@106.15.60.232:8379/0'
+REDIS_URL = "redis://root@106.15.60.232:8379/0"
 
 SERVER_NAME = None

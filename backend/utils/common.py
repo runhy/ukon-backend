@@ -1,58 +1,56 @@
-import requests
-from functools import wraps
-
-
 _BLOCK_SIZE = 1024 * 1024 * 10
 
 
-# 自定义的枚举
-def enum(**status):
-    return type('Enum', (), status)
+# error message
+class ERROR:
+    LOGIN_ERROR = "Login error"
+    PHONE_ERROR = "Wrong phone number"
+    PHONE_PASSWORD_ERROR = "Wrong phone or password"
+    NAME_ERROR = "Wrong account"
+    PASSWORD_ERROR = "Wrong password"
+    NAME_PASSWORD_ERROR = "Wrong name or password"
+    NOT_CONFIRMED = "Not confirmed"
+    USER_NAME_EXIST = "Username already exists"
+    USER_ERROR = "User error"
+    PARAMS_ERROR = "Parameters error"
+    PARAMS_FAIL = "Parameters fail"
+    BAD_PARAMS = "Bad parameters"
+    PHONE_EXIST = "Phone number already exists"
+    PHONE_NULL = "Phone number is null"
+    USER_NULL = "User not found"
+    PASSWORD_CONFIRM_ERROR = "Passwords do not match"
+    TOKEN_NEED = {"message": "Token is required", "status_code": 1001}
+    LOGIN_EXPIRED = {"message": "Login expired", "status_code": 1002}
+    INVALID_TOKEN = {"message": "Invalid token", "status_code": 1003}
+    USER_LOGINED = {"message": "User has already logged in", "status_code": 1004}
+    USER_IN_BLACKLIST = {"message": "User is in the blacklist", "status_code": 1005}
+    REFRESH_TOKEN_EXPIRED = {"message": "Refresh token expired", "status_code": 1006}
+    PRINT_LOG_ERROR = {"message": "Print log error", "status_code": 100500}
+    SMS_CODE_EXISTS = "Already sent, please wait"
+    SMS_CODE_EXPIRED = "SMS code expired"
+    SMS_CODE_ERROR = "SMS code error"
+    SMS_CODE_FULL = "SMS code limit full"
+    UNKNOWN_ERROR = "Unknown error"
 
 
-# 错误信息
-ERROR = enum(LOGIN_ERROR='LOGIN_ERROR',
-             PHONE_ERROR='WRONG PHONE NUMBER',
-             PHONE_PASSWORD_ERROR='WRONG PHONE OR PASSWORD',
-             NAME_ERROR='WRONG ACCOUNT',
-             PASSWORD_ERROR='WRONG PASSWORD',
-             NAMW_PASSWORD_ERROR='WRONG NAME OR PASSWORD',
-             NOT_CONFIRMED='NOT_CONFIRMED',
-             USER_NAME_EXIST='USER_NAME_EXIST',
-             USER_ERROR='USER_ERROR',
-             PARAMS_ERROR='PARAMS_ERROR',
-             PARAMS_FAIL='PARAMS_FAIL',
-             BAD_PARAMS='BAD_PARAMS',
-             PHONE_EXIST='PHONE_EXIST',
-             PHONE_NULL='PHONE_NULL',
-             USER_NULL='USER NOT FOUND',
-             PASSWORD_ERROR_1='TWO PASSWORD WAS NOT MATCH',
-             TOKEN_NEED={'message': 'TOKEN_NEED', 'status_code': 1001},
-             LOGIN_EXPIRED={'message': 'LOGIN_EXPIRED', 'status_code': 1002},
-             INVALID_TOKEN={'message': 'INVALID_TOKEN', 'status_code': 1003},
-             USER_LOGINED={'message': 'USER_HAS_LOGIN', 'status_code': 1004},
-             USER_IN_BLACKLIST={'message': 'USER_IN_BLACKLIST', 'status_code': 1005},
-             REFRESH_TOKEN_EXPIRED={'message': 'REFRESH_TOKEN_EXPIRED', 'status_code': 1006},
-             PRINT_LOG_ERROR={'message': 'PRINT_LOG_ERROR', 'status_code': 100500},
-             SMS_CODE_EXISTS='SMS_CODE_EXISTS',
-             SMS_CODE_EXPIRED='SMS_CODE_EXPIRED',
-             SMS_CODE_ERROR='SMS_CODE_ERROR',
-             SMS_CODE_FULL='SMS_CODE_FULL',
-             UNKNOWN_ERROR='UNKNOWN_ERROR',
-             )
+# success message
+class SUCCESS:
+    USER_ADDED = "User added successfully"
+    ADD_OK = "Add operation successful"
+    GET_OK = "Get operation successful"
+    PATCH_OK = "Patch operation successful"
+    DELETE_OK = "Delete operation successful"
+    LOGIN_SUCCESS = "Login successful"
+    LOGIN_EXIT = "Logout successful"
+    OPERATE_SUCCESS = "Operation successful"
+    UPDATE_SUCCESS = "Update successful"
 
-# 成功信息
-SUCCESS = enum(USER_ADDED='USER_ADDED',
-               ADD_OK='ADD_OK',
-               GET_OK='GET_OK',
-               PATCH_OK='PATCH_OK',
-               DELETE_OK='DELETE_OK',
-               LOGIN_SUCCESS='LOGIN_SUCCESS',
-               LOGIN_EXIT='LOGIN_EXIT',
-               OPERATE_SUCCESS='OPERATE_SUCCESS',
-               UPDATE_SUCCESS='UPDATE_SUCCESS'
-               )
 
-STATUS = enum(NORMAL=0, DELETE=-100)
+class STATUS:
+    NORMAL = 0
+    DELETE = -100
 
-ADMIN = enum(YES=1, NO=0)
+
+class ADMIN:
+    YES = 1
+    NO = 0
