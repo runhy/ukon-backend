@@ -2,9 +2,9 @@ FROM python:3.11
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 RUN echo "Asia/Tokyo" > /etc/timezone
 COPY backend /code
-COPY .env /code/.env
+# COPY .env /code/.env
 WORKDIR /code
-RUN export $(cat .env | xargs)
+# RUN export $(cat .env | xargs)
 RUN pip install --upgrade pip
 RUN pip install -r requirements/production.txt
 
