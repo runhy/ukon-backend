@@ -7,7 +7,7 @@ COPY .env /app/.env
 WORKDIR /app
 RUN export $(cat .env | xargs)
 RUN pip install --upgrade pip
-RUN pip install -r requirements/production.txt
+RUN pip install --quiet -r requirements/production.txt
 
 RUN apt-get clean
 RUN apt-get install -y openssl
