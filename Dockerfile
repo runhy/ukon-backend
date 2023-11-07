@@ -14,4 +14,4 @@ RUN apt-get install -y openssl
 
 EXPOSE 5000
 
-CMD ["/bin/bash", "app/bin/startup.sh"]
+CMD ["/bin/bash", "/app/bin/startup.sh"]
