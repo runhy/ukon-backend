@@ -93,3 +93,9 @@ jobs:
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
+    
+    - name: De-register (latest-1) revision
+        if: ${{ steps.download-task.outputs.revision > 0 }}
+        run: |
+          aws ecs deregister-task-definition \
+            --task-definition  ${{ env.SERVICE_NAME }}:${{ steps.download-task.outputs.revision }}
