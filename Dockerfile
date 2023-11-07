@@ -10,7 +10,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements/production.txt
 
 RUN apt-get clean
-RUN apt-get update -qqy && apt-get install -y netcat && apt-get install -y openssl
+RUN apt-get install -y openssl
 
 EXPOSE 5000
 
