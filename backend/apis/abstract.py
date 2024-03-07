@@ -1,4 +1,5 @@
-import json, ast
+import json
+import ast
 from flask import make_response, jsonify, current_app
 from werkzeug.wrappers import Response
 from flask_restful import Resource

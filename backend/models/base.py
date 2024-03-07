@@ -1,5 +1,5 @@
 import functools
-from flask_sqlalchemy import BaseQuery, SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.pool import NullPool
 from backend.utils import json_dumps
 from backend import settings

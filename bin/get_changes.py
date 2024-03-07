@@ -19,7 +19,7 @@ def get_change_log(previous_sha):
         try:
             pull_request = re.match("Merge pull request #(\d+)", subject).groups()[0]
             pull_request = " #{}".format(pull_request)
-        except Exception as ex:
+        except Exception:
             pull_request = ""
 
         author = subprocess.check_output(['git', 'log', '-1', '--pretty=format:"%an"', parents.split(' ')[-1]])[1:-1]

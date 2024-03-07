@@ -4,8 +4,8 @@ import re
 import logging
 import sentry_sdk
 from collections import defaultdict
-from sentry_sdk.integrations.flask import FlaskIntegration
-from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
+# from sentry_sdk.integrations.flask import FlaskIntegration
+# from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 
 
 def import_env(app, env_file):
@@ -35,11 +35,11 @@ def strip_sensitive_data(event, hint):
     return event
 
 
-def import_sentry(app):
-    print(app.config['SENTRY_URL'], app.config['ENV_NAME'])
-    sentry_sdk.init(
-        dsn="{SENTRY_URL}",
-        integrations=[FlaskIntegration()],
-        environment=app.config['ENV_NAME'],
-        # before_send=strip_sensitive_data
-    )
+# def import_sentry(app):
+#     print(app.config['SENTRY_URL'], app.config['ENV_NAME'])
+#     sentry_sdk.init(
+#         dsn="{SENTRY_URL}",
+#         integrations=[FlaskIntegration()],
+#         environment=app.config['ENV_NAME'],
+#         # before_send=strip_sensitive_data
+#     )
